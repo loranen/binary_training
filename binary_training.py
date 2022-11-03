@@ -56,19 +56,21 @@ while True:
     tic = time.perf_counter()
     if q_type == 0:
         ans = input(question1).replace(" ", "").upper().split(",")
+        ans[0] = ans[0].lstrip('0').strip()
         correct_ans = ['{:b}'.format(number), hex(number)[2:].upper()]
     elif q_type == 1:
         ans = input(question2).replace(" ", "").upper().split(",")
         correct_ans = [str(number), hex(number)[2:].upper()]
     elif q_type == 2:
         ans = input(question3).replace(" ", "").upper().split(",")
+        ans[1] = ans[1].lstrip('0').strip()
         correct_ans = [str(number), '{:b}'.format(number)]
 
     toc = time.perf_counter()
 
     if ans == ["Q"]:
         break
-    elif ans == correct_ans:
+    elif ans[:2] == correct_ans:
         correct += 1
         k = -MAX_POINTS/MAX_TIME
         points_to_add = k*(toc-tic)+MAX_POINTS
@@ -77,7 +79,8 @@ while True:
         points += points_to_add
         print("Correct answer! {:.2f} points earned".format(points_to_add))
     else:
-        print("Wrong answer! Correct answer is ", correct_ans[0],", ", correct_ans[1], sep="")
+        print("Wrong answer! Correct answer is ", correct_ans, sep="")
+        print("Your answer was", ans[:2])
         wrong += 1
 
     time_counter += toc - tic
