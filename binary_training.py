@@ -50,7 +50,7 @@ while True:
 
     question1 = str(question_counter) + ". What is binary and hex of " + str(number) + " (bin,hex): "
     question2 = str(question_counter) + ". What is decimal and hex of " + '{0:0{num_of_bits}b}'.format(number, num_of_bits=args.level) + " (dec,hex): "
-    question3 = str(question_counter) + ". What is decimal and binary of " + hex(number) + " (dec,bin): "
+    question3 = str(question_counter) + ". What is decimal and binary of " + hex(number).upper() + " (dec,bin): "
 
     questions = [question1, question2, question3]
     tic = time.perf_counter()
